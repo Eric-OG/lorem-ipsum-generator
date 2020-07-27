@@ -1,0 +1,14 @@
+{
+  "name": "lorem-ipsum-generator",
+  "version": "1.0.0",
+  "description": "Lorem ipsum generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Oliveira Gomes",
+  "license": "ISC",
+  "dependencies": {
+    "lorem-ipsum": "^2.0.3"
+  }
+}
