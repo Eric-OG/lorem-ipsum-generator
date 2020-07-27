@@ -1,14 +1,17 @@
-import { loremIpsum } from "./node_modules/lorem-ipsum/";
+const updateText = () => {
+    const paragraphInput = document.getElementById('paragraphs')
+    const sentencesInput = document.getElementById('sentences')
+    const wordsInput = document.getElementById('words')
 
-const generatedText = loremIpsum({
-    count: paragraphsNum,                // Number of "words", "sentences", or "paragraphs"
-    format: "plain",         // "plain" or "html"
-    paragraphLowerBound: sentencesNum,  // Min. number of sentences per paragraph.
-    paragraphUpperBound: sentencesNum,  // Max. number of sentences per paragarph.
-    sentenceLowerBound: wordsNum,   // Min. number of words per sentence.
-    sentenceUpperBound: wordsNum,  // Max. number of words per sentence.
-    suffix: "\n",            // Line ending, defaults to "\n" or "\r\n" (win32)
-    units: "paragraphs",      // paragraph(s), "sentence(s)", or "word(s)"
-})
+    const paragraphs = paragraphInput.value;
+    const sentences = sentencesInput.value;
+    const words = wordsInput.value;
 
-console.log(generatedText);
+    const generatedText = document.getElementById('generatedText');
+    fetch(`http://localhost:5000/api/${paragraphs}/${sentences}/${words}`)
+        .then(res => res.json())
+        .then(data => { generatedText.innerHTML = data.text })
+}
+
+const generateButton = document.getElementById('generateButton')
+generateButton.onclick = updateText
